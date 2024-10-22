@@ -174,36 +174,36 @@ class LargeScreenNavBar extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  width: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    // Navigator.pushNamed(context, '/services');
-                    Get.toNamed('/services');
-                    // Get.toNamed(Routes.services);
-                  },
-                  child: Row(
-                    children: [
-                      selected == 3
-                          ? const Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 18,
-                            )
-                          : const Text(""),
-                      Text(
-                        "Services",
-                        style: selected == 3
-                            ? const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.green)
-                            : const TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
+                // const SizedBox(
+                //   width: 20,
+                // ),
+                // InkWell(
+                //   onTap: () {
+                //     // Navigator.pushNamed(context, '/services');
+                //     Get.toNamed('/services');
+                //     // Get.toNamed(Routes.services);
+                //   },
+                //   child: Row(
+                //     children: [
+                //       selected == 3
+                //           ? const Icon(
+                //               Icons.check_circle,
+                //               color: Colors.green,
+                //               size: 18,
+                //             )
+                //           : const Text(""),
+                //       Text(
+                //         "Services",
+                //         style: selected == 3
+                //             ? const TextStyle(
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.bold,
+                //                 color: Colors.green)
+                //             : const TextStyle(color: Colors.white),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 const SizedBox(
                   width: 20,
                 ),
@@ -380,34 +380,34 @@ class _SmallScreenNavBarState extends State<SmallScreenNavBar> {
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Get.toNamed('/services');
-                    },
-                    child: Row(
-                      children: [
-                        widget.selected == 3
-                            ? const Icon(
-                                Icons.check_circle,
-                                color: Colors.green,
-                                size: 18,
-                              )
-                            : const Text(""),
-                        Text(
-                          "Services",
-                          style: widget.selected == 3
-                              ? const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green)
-                              : const TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // const SizedBox(
+                  //   width: 20,
+                  // ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.toNamed('/services');
+                  //   },
+                  //   child: Row(
+                  //     children: [
+                  //       widget.selected == 3
+                  //           ? const Icon(
+                  //               Icons.check_circle,
+                  //               color: Colors.green,
+                  //               size: 18,
+                  //             )
+                  //           : const Text(""),
+                  //       Text(
+                  //         "Services",
+                  //         style: widget.selected == 3
+                  //             ? const TextStyle(
+                  //                 fontSize: 16,
+                  //                 fontWeight: FontWeight.bold,
+                  //                 color: Colors.green)
+                  //             : const TextStyle(color: Colors.white),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   const SizedBox(
                     width: 20,
                   ),

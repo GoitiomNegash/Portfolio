@@ -4,9 +4,13 @@ import 'dart:html' as html;
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:portfolio/pages/bottom_nav.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'nav_bar_copy.dart';
 
@@ -185,69 +189,223 @@ class _AboutPageState extends State<AboutPage> {
                       Row(
                         children: [
                           const Expanded(
+                              flex: 2,
                               child: Image(image: AssetImage('images/2.png'))),
                           Expanded(
+                              flex: 4,
                               child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                "About Me",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    decorationColor: Colors.green,
-                                    decoration: TextDecoration.underline,
-                                    decorationThickness: 3,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30),
-                              ),
-                              Container(
-                                height: 3,
-                                width: 25,
-                                color: Colors.white,
-                              ),
-                              const SizedBox(
-                                height: 25,
-                              ),
-                              const Text(
-                                "# This is Goitom Negash (Bsc. in Computer Science and Engineering(CSE).), \n\n"
-                                "# A passionate and dedicated software developer with hands on experience "
-                                "\n  of building innovative and user-friendly applications. I have a strong foundation in "
-                                "\n  Programming languages, e.g., javaScript(react, express ), PHP, Python, Dart, and am proficient \n  in using Frameworks "
-                                "and tools, e.g., Flutter, React, Django, Laravel, Git.\n\n# I'm driven by a desire to create solutions that solve real-world problems and make \n"
-                                "  a positive impact. My previous projects have included [List of projects, \n  e.g., developing a web application for e-commerce, building a mobile "
-                                "\n  app for a local business].\n\n# I'm eager to continue learning and growing as a software developer. \n   I'm always seeking new challenges and opportunities "
-                                "to expand my skills \n   and contribute to the development of cutting-edge technologies.",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              const SizedBox(
-                                height: 60,
-                              ),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    padding: const EdgeInsets.all(15),
-                                    shadowColor: Colors.white,
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5)),
-                                    backgroundColor:
-                                        Colors.green, //const Color(0xff000042)
-                                  ),
-                                  onPressed: () async {
-                                    final pdfData =
-                                        await generatePdf(); // Generate PDF bytes
-                                    downloadFile(pdfData);
-                                    // downloadFile(
-                                    //     '../.assets/images/Goitom_negash_application_letter_.pdf');
-                                  },
-                                  child: const Text(
-                                    "Download Cv",
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "About Me",
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                            ],
-                          ))
+                                        color: Colors.black,
+                                        decorationColor: Colors.green,
+                                        decoration: TextDecoration.underline,
+                                        decorationThickness: 3,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30),
+                                  ),
+                                  Container(
+                                    height: 3,
+                                    width: 25,
+                                    color: Colors.white,
+                                  ),
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+                                  Text.rich(
+                                      TextSpan(text: "# This is ", children: [
+                                    const TextSpan(
+                                        text:
+                                            "Goitom Negash, BSc. in Computer Science and Engineering(CSE).\n\n",
+                                        style: TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            decorationThickness: 2,
+                                            color: Colors.green,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w900)),
+                                    const TextSpan(
+                                        text:
+                                            "# A passionate and dedicated software developer with hands on experience ",
+                                        style: TextStyle(color: Colors.black)),
+                                    const TextSpan(
+                                        text:
+                                            "\n  of building innovative and user-friendly applications. I have a strong foundation in\n "),
+                                    const TextSpan(
+                                        text:
+                                            " Programming languages, e.g., javaScript(react, express ), PHP, Python, Dart, and am\n  proficient in using Frameworks "
+                                            "and tools, e.g., Flutter, React, Django, Laravel, Git.\n\n# I'm driven by a desire to create solutions that solve real-world problems and make \n"
+                                            "  a positive impact. My previous "),
+                                    TextSpan(
+                                        text: "projects",
+                                        style: const TextStyle(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xff000035),
+                                            fontSize: 16),
+                                        recognizer: TapGestureRecognizer()
+                                          ..onTap = () {
+                                            Get.toNamed('/works');
+                                          }),
+                                    const TextSpan(
+                                        text:
+                                            " have included e.g., developing a web application\n  for Job portal system, building a mobile "
+                                            "app for a Flight reservation.\n\n# I'm eager to continue learning and growing as a software developer. \n   I'm always seeking new challenges and opportunities "
+                                            "to expand my skills \n   and contribute to the development of cutting-edge technologies.")
+                                  ])),
+                                  // const Text(
+                                  //   " have included [List of projects, \n  e.g., developing a web application for e-commerce, building a mobile "
+                                  //   "\n  app for a local business].\n\n# I'm eager to continue learning and growing as a software developer. \n   I'm always seeking new challenges and opportunities "
+                                  //   "to expand my skills \n   and contribute to the development of cutting-edge technologies.",
+                                  //   style: TextStyle(color: Colors.black),
+                                  // ),
+                                  const SizedBox(height: 15),
+                                  const Text(
+                                    "Skills.....",
+                                    style: TextStyle(
+                                      decoration: TextDecoration.underline,
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const SizedBox(
+                                    width: 300,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10.0),
+                                      child: Wrap(
+                                        spacing: 20,
+                                        runSpacing: 10,
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.react,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          // Icon(
+                                          //   FontAwesomeIcons.,
+                                          //   color: Colors.green,
+                                          //   size: 30,
+                                          // ),
+                                          Icon(
+                                            FontAwesomeIcons.js,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.nodeJs,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.figma,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.gitAlt,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.github,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          // Icon(
+                                          //   FontAwesomeIcons.githubAlt,
+                                          //   color: Colors.green,
+                                          //   size: 30,
+                                          // ),
+                                          Icon(
+                                            FontAwesomeIcons.bootstrap,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          // Icon(
+                                          //   FontAwesomeIcons.reacteurope,
+                                          //   color: Colors.green,
+                                          //   size: 30,
+                                          // ),
+                                          Icon(
+                                            FontAwesomeIcons.android,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.python,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.mobileAndroidAlt,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.laravel,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.php,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                          Icon(
+                                            FontAwesomeIcons.database,
+                                            color: Colors.green,
+                                            size: 30,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 60,
+                                  ),
+                                  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        padding: const EdgeInsets.all(15),
+                                        shadowColor: Colors.white,
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5)),
+                                        backgroundColor: Colors
+                                            .green, //const Color(0xff000042)
+                                      ),
+                                      onPressed: () async {
+                                        const url =
+                                            '../.assets/images/Goitom_negash_application_letter_.pdf';
+                                        if (await canLaunch(url)) {
+                                          await launch(
+                                            url,
+                                          );
+                                        } else {
+                                          throw 'Could not launch $url';
+                                        }
+                                        // final pdfData =
+                                        //     await generatePdf(); // Generate PDF bytes
+                                        // downloadFile(pdfData);
+                                        // downloadFile(
+                                        //     '../.assets/images/Goitom_negash_application_letter_.pdf');
+                                      },
+                                      child: const Text(
+                                        "Download Cv",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                ],
+                              ))
                         ],
                       ),
                       Padding(

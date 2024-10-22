@@ -37,17 +37,17 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Routes.services,
             page: () => const ServicesPage(),
-            transition: Transition.rightToLeftWithFade,
+            transition: Transition.fade,
             transitionDuration: const Duration(milliseconds: 600)),
         GetPage(
             name: Routes.works,
             page: () => const WorksPage(),
-            transition: Transition.leftToRight,
+            transition: Transition.fade,
             transitionDuration: const Duration(milliseconds: 600)),
         GetPage(
             name: Routes.contacts,
             page: () => const ContactPage(),
-            transition: Transition.leftToRightWithFade,
+            transition: Transition.fade,
             transitionDuration: const Duration(milliseconds: 600)),
       ],
       // routes: {
